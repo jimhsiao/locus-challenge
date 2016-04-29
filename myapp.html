@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="resources/css/myapp.css" type="text/css">
+		<script src = "resources/js/myapp.js">
+		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	</head>
+<body>
+
+	<form >
+
+		From: 
+		<input id="from-date" type = "date" >
+		<input id = "from-time" type = "time">
+		To:
+		<input id = "to-date" type = "date">
+		<input id = "to-time" type = "time" >
+		<input type = "submit" onClick ="display_options_url(); return false;" value = "submit">
+	</form>
+
+	<div class = "section-divider" >
+	</div>
+
+	<div id = "time-interval" >
+	Time Interval:
+	</div>
+
+	<div class = "section-divider" >
+	</div>
+
+	<span> Options </span>
+
+	<div class = "section-divider2" >
+	</div>
+
+	<div id = "options" >
+		
+	</div>
+
+	<script type="text/javascript">
+
+		function parseUrl( url ) {
+		    var a = document.createElement('a');
+		    a.href = url;
+		    return a.search;
+		}
+		var url = parseUrl(window.location.href)
+		var f_ind = url.indexOf("from")
+		var t_ind = url.indexOf("to")
+
+		if(f_ind != -1) {
+			var yr = url.substring(f_ind+5,f_ind+9)
+			var mo = url.substring(f_ind+10,f_ind+12)
+			var day = url.substring(f_ind+13,f_ind+15)
+			var hr = url.substring(f_ind+16,f_ind+18)
+			var mi = url.substring(f_ind+19,f_ind+21)
+			document.getElementById("from-date").value = yr+"-"+mo+"-"+day
+			document.getElementById("from-time").value = hr + ":" + mi + ":00"
+		}
+		if(t_ind != -1) {
+			var yr = url.substring(t_ind+3,t_ind+7)
+			var mo = url.substring(t_ind+8,t_ind+10)
+			var day = url.substring(t_ind+11,t_ind+13)
+			var hr = url.substring(t_ind+14,t_ind+16)
+			var mi = url.substring(t_ind+17,t_ind+19)
+			document.getElementById("to-date").value = yr+"-"+mo+"-"+day
+			document.getElementById("to-time").value = hr + ":" + mi + ":00"
+		}
+		display_options();
+
+	</script>
+
+</body>
+</html>
